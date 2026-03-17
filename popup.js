@@ -74,6 +74,7 @@ function renderSiteList() {
   for (const site of sites) {
     const stats = statsById.get(site.id);
     const usageRatio = stats?.maxUsageMs ? Math.min((stats.usageMs / stats.maxUsageMs) * 100, 100) : 0;
+    const isBlocked = Boolean(stats?.isBlocked);
     const stateLabel = stats?.isBlocked
       ? formatDuration(stats.remainingBlockMs)
       : `${Math.max(0, Math.ceil((stats?.remainingUsageMs || 0) / 60000))} min available`;
@@ -82,13 +83,13 @@ function renderSiteList() {
     card.className = "site-card";
     card.innerHTML = `
       <input class="site-toggle" type="checkbox" ${site.enabled ? "checked" : ""} aria-label="Toggle ${site.label}" />
-      <div>
+      <div class="site-details">
         <h3>${site.label}</h3>
         <p>${site.patterns.join(", ")}</p>
       </div>
       <div class="site-actions">
+        <span class="site-state-pill ${isBlocked ? "is-blocked" : "is-ready"}">${isBlocked ? "Locked" : "Ready"}</span>
         <div class="site-metric">
-          <strong>${stats?.isBlocked ? "Locked" : "Ready"}</strong>
           <span>${stateLabel}</span>
           <div class="site-meter"><span style="width:${usageRatio}%;"></span></div>
         </div>

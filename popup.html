@@ -8,23 +8,21 @@
     <link rel="stylesheet" href="popup.css" />
   </head>
   <body class="popup-page">
-    <main class="app-shell">
-      <section class="hero popup-hero">
-        <div class="popup-hero-topline">
+    <main class="app-shell popup-shell">
+      <header class="popup-header">
+        <div class="popup-header-row">
           <p class="eyebrow">ScrollBrake</p>
           <div class="hero-chip" id="active-site-chip">No tracked site open</div>
         </div>
-        <div class="popup-hero-copy">
-          <h1>Focus settings</h1>
-          <p class="lede">Set a scroll budget and a short reset window for every tracked site.</p>
-        </div>
-      </section>
+        <h1>Control your scroll</h1>
+        <p class="lede">Set a time budget, force a reset, and keep every rule local to this browser.</p>
+      </header>
 
       <section class="panel popup-section popup-section-limits">
         <div class="panel-heading popup-heading">
           <div>
-            <h2>Limits</h2>
-            <p>Applies independently to each enabled site.</p>
+            <h2>Session Limits</h2>
+            <p>Applied separately to each enabled site.</p>
           </div>
         </div>
         <form id="settings-form" class="settings-grid popup-settings-grid">
@@ -36,7 +34,7 @@
             </div>
           </label>
           <label class="field popup-stat-field">
-            <span>Lockout time</span>
+            <span>Lockout</span>
             <div class="input-with-suffix">
               <input id="block-duration-minutes" name="blockDurationMinutes" type="number" min="1" step="1" required />
               <span>min</span>
@@ -48,8 +46,8 @@
       <section class="panel popup-section popup-section-sites">
         <div class="panel-heading popup-heading">
           <div>
-            <h2>Tracked sites</h2>
-            <p>Toggle built-ins or add your own.</p>
+            <h2>Tracked Sites</h2>
+            <p>Toggle defaults or add a custom domain below.</p>
           </div>
         </div>
         <div id="site-list" class="site-list"></div>
