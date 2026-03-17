@@ -96,7 +96,8 @@ function ensureOverlay() {
         height: 12px;
         overflow: hidden;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.08);
+        background: rgba(255, 255, 255, 0.16);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
       }
 
       #${OVERLAY_ID} .meter-fill {
