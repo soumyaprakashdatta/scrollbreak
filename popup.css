@@ -136,17 +136,18 @@ body {
 }
 
 body.popup-page {
+  width: 320px;
   min-width: 0;
   background: #11161e;
 }
 
 body.popup-page .popup-shell {
   padding: 0;
-  width: 320px;
-  max-width: calc(100vw - 16px);
-  margin: 8px auto;
-  border: 1px solid #252d3b;
-  border-radius: 16px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
   background: #151b24;
   overflow: hidden;
 }
