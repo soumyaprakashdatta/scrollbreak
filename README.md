@@ -26,7 +26,7 @@ ScrollBrake stores settings and timer state only in local extension storage on t
 - Browser build outputs are generated into `dist/chrome` and `dist/firefox`
 - Browser-specific manifest differences are handled by `scripts/build.mjs`
 
-## Requirements
+## Development Requirements
 
 - Node.js installed locally
 - Chrome for the Chrome build
