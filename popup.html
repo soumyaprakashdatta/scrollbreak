@@ -6,13 +6,13 @@
     <title>ScrollBrake</title>
     <link rel="stylesheet" href="popup.css" />
   </head>
-  <body>
+  <body class="popup-page">
     <main class="app-shell">
       <section class="hero">
         <div>
           <p class="eyebrow">ScrollBrake</p>
-          <h1>Guard your scroll time.</h1>
-          <p class="lede">Set a usage budget, take a timed break, and keep every setting on this device only.</p>
+          <h1>Brake the scroll.</h1>
+          <p class="lede">Quick limits, timed breaks, local-only data.</p>
         </div>
         <div class="hero-chip" id="active-site-chip">No tracked site open</div>
       </section>
@@ -46,7 +46,7 @@
         <div class="panel-heading">
           <div>
             <h2>Tracked sites</h2>
-            <p>Toggle built-ins or add your own domains.</p>
+            <p>Built-ins plus your own domains.</p>
           </div>
         </div>
         <div id="site-list" class="site-list"></div>
@@ -57,11 +57,6 @@
           </label>
           <button class="secondary-button" type="submit">Add</button>
         </form>
-      </section>
-
-      <section class="privacy-note">
-        <h2>Privacy-first by design</h2>
-        <p>ScrollBrake uses local extension storage only. No accounts, analytics, syncing, or network requests.</p>
       </section>
 
       <footer class="app-footer">
