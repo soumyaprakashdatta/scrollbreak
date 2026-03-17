@@ -34,7 +34,7 @@ ScrollBrake stores settings and timer state only in local extension storage on t
 
 ## Build
 
-From [/Users/spd/workspace/github/lock_social_media](/Users/spd/workspace/github/lock_social_media):
+From the project root:
 
 ```bash
 npm run build
@@ -49,22 +49,22 @@ Available scripts:
 
 Build outputs:
 
-- Chrome: [/Users/spd/workspace/github/lock_social_media/dist/chrome](/Users/spd/workspace/github/lock_social_media/dist/chrome)
-- Firefox: [/Users/spd/workspace/github/lock_social_media/dist/firefox](/Users/spd/workspace/github/lock_social_media/dist/firefox)
+- Chrome: `dist/chrome`
+- Firefox: `dist/firefox`
 
 ## Load in Chrome
 
 1. Open `chrome://extensions`
 2. Turn on Developer mode
 3. Choose Load unpacked
-4. Select [/Users/spd/workspace/github/lock_social_media/dist/chrome](/Users/spd/workspace/github/lock_social_media/dist/chrome)
+4. Select `dist/chrome`
 5. Reload the extension after code changes
 
 ## Load in Firefox
 
 1. Open `about:debugging#/runtime/this-firefox`
 2. Click `Load Temporary Add-on...`
-3. Select [/Users/spd/workspace/github/lock_social_media/dist/firefox/manifest.json](/Users/spd/workspace/github/lock_social_media/dist/firefox/manifest.json)
+3. Select `dist/firefox/manifest.json`
 4. Reload the temporary add-on after rebuilding
 
 ## How It Works
