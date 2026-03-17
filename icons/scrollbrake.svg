@@ -9,8 +9,8 @@
       <stop offset="1" stop-color="#2B74FF"/>
     </linearGradient>
   </defs>
-  <circle cx="256" cy="256" r="136" fill="url(#ring)" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="8"/>
-  <path d="M344 182C320 153 289 138 251 138C186 138 132 192 132 258C132 324 186 378 252 378C305 378 352 343 367 292" stroke="#FFF8ED" stroke-width="24" stroke-linecap="round"/>
-  <path d="M294 146L348 146L348 200" stroke="#FFF8ED" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M276 154L214 264H258L228 358L314 228H266L276 154Z" fill="url(#bolt)"/>
+  <circle cx="256" cy="256" r="160" fill="url(#ring)" stroke="#FFFFFF" stroke-opacity="0.18" stroke-width="10"/>
+  <path d="M359 171C332 138 296 122 252 122C175 122 112 184 112 260C112 336 175 398 253 398C317 398 373 356 390 297" stroke="#FFF8ED" stroke-width="28" stroke-linecap="round"/>
+  <path d="M301 130L364 130L364 193" stroke="#FFF8ED" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M281 138L209 266H261L226 376L326 224H270L281 138Z" fill="url(#bolt)"/>
 </svg>
