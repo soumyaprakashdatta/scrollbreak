@@ -289,6 +289,10 @@ body.popup-page .hero-chip {
   border-bottom: 1px solid #252d3b;
 }
 
+.popup-section-limits {
+  padding-top: 18px;
+}
+
 .popup-heading {
   display: grid;
   gap: 2px;
@@ -385,7 +389,7 @@ input {
 }
 
 body.popup-page input {
-  padding: 8px 0;
+  padding: 7px 0 10px;
   color: #f4f7fb;
   font-size: 15px;
   font-weight: 700;
