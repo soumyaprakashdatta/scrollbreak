@@ -53,12 +53,16 @@ Available scripts:
 - `npm run build` builds both Chrome and Firefox targets
 - `npm run build:chrome` builds only the Chrome target
 - `npm run build:firefox` builds only the Firefox target
+- `npm run package` builds ZIP upload packages for both stores
+- `npm run package:chrome` builds the Chrome ZIP upload package
+- `npm run package:firefox` builds the Firefox ZIP upload package
 - `npm run check` runs JavaScript syntax checks on the project files
 
 Build outputs:
 
 - Chrome: `dist/chrome`
 - Firefox: `dist/firefox`
+- Store upload ZIPs: `release/`
 
 ## Load in Chrome
 
