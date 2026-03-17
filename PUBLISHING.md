@@ -4,9 +4,10 @@ This guide covers the exact steps to prepare and submit ScrollBrake to the Chrom
 
 ## Before You Submit
 
-- Pick a stable version number and update it in `package.json` and `scripts/build.mjs`
+- Pick a stable version number and update it in `package.json`
 - For Firefox, replace the temporary Gecko ID in `scripts/build.mjs` with a stable public ID you control, such as `scrollbrake@yourdomain.com`
 - Make sure the extension name, description, and privacy claims are consistent across the repo, store listings, and privacy policy
+- Make sure the system `zip` command is available locally because the packaging step uses it to create store upload archives
 
 ## Build And Package
 
@@ -23,7 +24,7 @@ Artifacts created by the packaging step:
 - `release/scrollbrake-chrome-<version>.zip`
 - `release/scrollbrake-firefox-<version>.zip`
 
-The ZIP files are created with the extension files at the archive root, which is what the stores expect.
+The ZIP files are created from the existing `dist/` build outputs with the extension files at the archive root, which is what the stores expect.
 
 ## Chrome Web Store Checklist
 
@@ -138,7 +139,7 @@ Reviewer notes:
 Source code submission notes:
 
 - Upload a source archive from the repository root
-- Include the original source files and `scripts/build.mjs`
+- Include the original source files plus the build and packaging scripts in `scripts/`
 - Exclude generated `dist/` and `release/` artifacts if AMO asks for source rather than built output
 
 ## Privacy Policy
