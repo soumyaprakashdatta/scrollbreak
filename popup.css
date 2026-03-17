@@ -130,11 +130,6 @@ body {
   padding: 18px;
 }
 
-.app-shell-options {
-  max-width: 720px;
-  margin: 24px auto;
-}
-
 body.popup-page {
   width: 320px;
   min-width: 0;
@@ -698,10 +693,6 @@ body.popup-page .status-message {
 }
 
 @media (max-width: 640px) {
-  body.options-page {
-    min-width: 0;
-  }
-
   .settings-grid {
     grid-template-columns: 1fr;
   }
@@ -732,13 +723,4 @@ body.popup-page .status-message {
     align-items: end;
   }
 
-  body.options-page .popup-header-row {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  body.options-page .hero-chip {
-    max-width: none;
-    text-align: left;
-  }
 }

@@ -1,0 +1,181 @@
+body.options-page {
+  min-width: 0;
+  background: #efe7da;
+}
+
+body.options-page .app-shell-options {
+  max-width: 760px;
+  margin: 28px auto;
+  padding: 0 22px 40px;
+}
+
+body.options-page .hero,
+body.options-page .panel,
+body.options-page .privacy-note {
+  margin-bottom: 18px;
+  padding: 22px 24px;
+  border: 1px solid #dccfbd;
+  border-radius: 28px;
+  background: #f8f2e8;
+}
+
+body.options-page .hero {
+  display: grid;
+  gap: 16px;
+}
+
+body.options-page .eyebrow {
+  margin-bottom: 6px;
+  color: #dd6231;
+}
+
+body.options-page .hero h1 {
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: #202638;
+}
+
+body.options-page .lede,
+body.options-page .panel-heading p,
+body.options-page .privacy-note p,
+body.options-page .status-message {
+  color: #616b80;
+}
+
+body.options-page .hero-chip {
+  justify-self: start;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #d7e2ff;
+  color: #2f6dff;
+  font-weight: 700;
+}
+
+body.options-page .panel-heading {
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #dfd2c1;
+}
+
+body.options-page .panel h2,
+body.options-page .privacy-note h2 {
+  color: #202638;
+}
+
+body.options-page .settings-grid {
+  gap: 14px;
+}
+
+body.options-page .field {
+  gap: 8px;
+}
+
+body.options-page .input-with-suffix {
+  min-height: 50px;
+  padding: 0 16px;
+  border: 1px solid #d8ccbb;
+  border-radius: 18px;
+  background: #fffdf9;
+}
+
+body.options-page input {
+  padding: 12px 0;
+  color: #202638;
+}
+
+body.options-page input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+body.options-page input[type="number"]::-webkit-outer-spin-button,
+body.options-page input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+body.options-page .site-list {
+  gap: 10px;
+}
+
+body.options-page .site-card {
+  padding: 18px;
+  border: 1px solid #ddcfbf;
+  border-radius: 20px;
+  background: #fffdf9;
+}
+
+body.options-page .site-actions {
+  width: 110px;
+  gap: 8px;
+}
+
+body.options-page .site-metric {
+  width: 110px;
+}
+
+body.options-page .site-state-pill {
+  border-color: #d6c9b9;
+  background: #fff7ea;
+  color: #202638;
+}
+
+body.options-page .site-meter {
+  background: #d7ddea;
+}
+
+body.options-page .custom-site-form {
+  gap: 12px;
+  margin-top: 16px;
+  align-items: end;
+}
+
+body.options-page .custom-site-form .field-grow {
+  padding: 0 16px;
+  border: 1px solid #d8ccbb;
+  border-radius: 18px;
+  background: #fffdf9;
+}
+
+body.options-page .field-grow input {
+  padding: 12px 0;
+  border: 0;
+  background: transparent;
+}
+
+body.options-page .primary-button,
+body.options-page .secondary-button,
+body.options-page .text-button {
+  border-radius: 18px;
+}
+
+body.options-page .primary-button {
+  width: 100%;
+  padding: 14px 18px;
+}
+
+body.options-page .secondary-button {
+  padding: 14px 20px;
+}
+
+body.options-page .app-footer {
+  margin-top: 16px;
+}
+
+body.options-page .status-message {
+  margin-top: 12px;
+}
+
+@media (max-width: 720px) {
+  body.options-page .app-shell-options {
+    padding: 0 16px 28px;
+  }
+
+  body.options-page .hero,
+  body.options-page .panel,
+  body.options-page .privacy-note {
+    padding: 18px;
+    border-radius: 22px;
+  }
+}

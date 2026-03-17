@@ -6,6 +6,7 @@
     <title>ScrollBrake Settings</title>
     <script src="ui-theme.js"></script>
     <link rel="stylesheet" href="popup.css" />
+    <link rel="stylesheet" href="options.css" />
   </head>
   <body class="options-page">
     <main class="app-shell app-shell-options">
@@ -15,6 +16,7 @@
           <h1>ScrollBrake configuration</h1>
           <p class="lede">This full-page view uses the same controls as the popup, with all data stored locally on this device.</p>
         </div>
+        <div id="active-site-chip" class="hero-chip">No tracked site open</div>
       </section>
 
       <section class="panel">
@@ -68,7 +70,6 @@
         <button id="save-button" class="primary-button" type="button">Save changes</button>
       </footer>
       <p id="status-message" class="status-message" aria-live="polite"></p>
-      <div id="active-site-chip" class="hero-chip">No tracked site open</div>
     </main>
     <script src="popup.js" type="module"></script>
   </body>

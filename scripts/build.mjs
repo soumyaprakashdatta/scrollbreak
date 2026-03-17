@@ -9,6 +9,7 @@ const distDir = join(rootDir, "dist");
 const sharedFiles = [
   "README.md",
   "content-script.js",
+  "options.css",
   "options.html",
   "popup.css",
   "popup.html",
