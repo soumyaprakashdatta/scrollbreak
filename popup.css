@@ -598,12 +598,12 @@ body.popup-page .app-footer {
   gap: 4px;
 }
 
-.popup-inline-field input {
+body.popup-page .popup-inline-field input {
   padding: 9px;
   border: 1px solid #2c3444;
   border-radius: 12px;
   background: #121824;
-  font-size: 6px;
+  font-size: 12px;
   font-weight: 500;
 }
 
