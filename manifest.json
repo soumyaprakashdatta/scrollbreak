@@ -1,8 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "Social Lock",
+  "name": "ScrollBrake",
   "description": "Block social media sites after a configurable amount of active usage time with a timed lockout.",
   "version": "1.0.0",
+  "icons": {
+    "16": "icons/scrollbrake-16.png",
+    "32": "icons/scrollbrake-32.png",
+    "48": "icons/scrollbrake-48.png",
+    "128": "icons/scrollbrake-128.png"
+  },
   "permissions": [
     "storage",
     "tabs"
@@ -15,8 +21,12 @@
     "type": "module"
   },
   "action": {
-    "default_title": "Social Lock",
-    "default_popup": "popup.html"
+    "default_title": "ScrollBrake",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/scrollbrake-16.png",
+      "32": "icons/scrollbrake-32.png"
+    }
   },
   "options_page": "options.html",
   "content_scripts": [

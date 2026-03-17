@@ -292,7 +292,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
     sendResponse({ ok: false, error: "Unknown message type" });
   })().catch((error) => {
-    console.error("Social Lock message handling failed", error);
+    console.error("ScrollBrake message handling failed", error);
     sendResponse({ ok: false, error: error.message });
   });
 

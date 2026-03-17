@@ -118,7 +118,7 @@ function ensureOverlay() {
       <div class="meter" aria-hidden="true">
         <div class="meter-fill" id="social-lock-meter"></div>
       </div>
-      <div class="footer" id="social-lock-footer">Social Lock keeps your settings and timers on this device only.</div>
+      <div class="footer" id="social-lock-footer">ScrollBrake keeps your settings and timers on this device only.</div>
     </div>
   `;
 

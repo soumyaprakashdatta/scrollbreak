@@ -1,6 +1,6 @@
-# Social Lock
+# ScrollBrake
 
-Social Lock is a Manifest V3 Chrome extension that limits active time on social media sites. Each enabled site gets its own usage budget. When the budget is used up, the extension locks that site with a full-page countdown for the configured break period.
+ScrollBrake is a Manifest V3 Chrome extension that limits active time on social media sites. Each enabled site gets its own usage budget. When the budget is used up, the extension locks that site with a full-page countdown for the configured break period.
 
 ## Features
 

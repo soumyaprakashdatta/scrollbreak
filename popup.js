@@ -184,5 +184,5 @@ if (elements.openOptionsButton) {
 }
 
 loadDashboard().catch((error) => {
-  showStatus(error.message || "Failed to load Social Lock.", "error");
+  showStatus(error.message || "Failed to load ScrollBrake.", "error");
 });
