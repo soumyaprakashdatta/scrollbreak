@@ -147,35 +147,41 @@ async function saveSettings() {
   await loadDashboard();
 }
 
-elements.customSiteForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const pattern = normalizePattern(elements.customSiteDomain.value);
-  if (!pattern || !pattern.includes(".")) {
-    showStatus("Enter a valid domain such as example.com.", "error");
-    return;
-  }
+if (elements.customSiteForm) {
+  elements.customSiteForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const pattern = normalizePattern(elements.customSiteDomain.value);
+    if (!pattern || !pattern.includes(".")) {
+      showStatus("Enter a valid domain such as example.com.", "error");
+      return;
+    }
 
-  const exists = dashboardData.settings.sites.some((site) => site.patterns.includes(pattern));
-  if (exists) {
-    showStatus("That domain is already being tracked.", "error");
-    return;
-  }
+    const exists = dashboardData.settings.sites.some((site) => site.patterns.includes(pattern));
+    if (exists) {
+      showStatus("That domain is already being tracked.", "error");
+      return;
+    }
 
-  dashboardData.settings.sites.push(createCustomSite(pattern));
-  elements.customSiteDomain.value = "";
-  showStatus("Custom site added. Save to apply it.", "success");
-  renderSiteList();
-});
-
-elements.saveButton.addEventListener("click", () => {
-  saveSettings().catch((error) => {
-    showStatus(error.message || "Failed to save settings.", "error");
+    dashboardData.settings.sites.push(createCustomSite(pattern));
+    elements.customSiteDomain.value = "";
+    showStatus("Custom site added. Save to apply it.", "success");
+    renderSiteList();
   });
-});
+}
 
-elements.openOptionsButton.addEventListener("click", () => {
-  chrome.runtime.openOptionsPage();
-});
+if (elements.saveButton) {
+  elements.saveButton.addEventListener("click", () => {
+    saveSettings().catch((error) => {
+      showStatus(error.message || "Failed to save settings.", "error");
+    });
+  });
+}
+
+if (elements.openOptionsButton) {
+  elements.openOptionsButton.addEventListener("click", () => {
+    chrome.runtime.openOptionsPage();
+  });
+}
 
 loadDashboard().catch((error) => {
   showStatus(error.message || "Failed to load Social Lock.", "error");
