@@ -349,6 +349,11 @@ body.popup-page .site-card p {
   min-width: 88px;
 }
 
+body.popup-page .site-metric {
+  min-width: 0;
+  width: 100%;
+}
+
 .site-metric strong {
   display: block;
   margin-bottom: 4px;
@@ -357,12 +362,17 @@ body.popup-page .site-card p {
 }
 
 .site-meter {
-  width: 88px;
+  width: 100%;
+  max-width: 88px;
   height: 8px;
   margin-top: 6px;
   overflow: hidden;
   border-radius: 999px;
   background: var(--meter-track);
+}
+
+body.popup-page .site-meter {
+  max-width: none;
 }
 
 .site-meter > span {
