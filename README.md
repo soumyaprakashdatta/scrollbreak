@@ -13,11 +13,23 @@ ScrollBrake is a Manifest V3 Chrome extension that limits active time on social 
 
 ## Privacy
 
-The extension stores settings and timer state only in Chrome's local extension storage on the current device. This is the recommended storage mechanism for small, structured extension settings and avoids sharing user data outside the browser.
+The extension stores settings and timer state only in local extension storage on the current device. This is the recommended storage mechanism for small, structured extension settings and avoids sharing user data outside the browser.
+
+## Build
+
+1. From `/Users/spd/workspace/github/lock_social_media`, run `npm run build`
+2. Chrome build output: `/Users/spd/workspace/github/lock_social_media/dist/chrome`
+3. Firefox build output: `/Users/spd/workspace/github/lock_social_media/dist/firefox`
 
 ## Load in Chrome
 
 1. Open `chrome://extensions`
 2. Turn on Developer mode
 3. Choose Load unpacked
-4. Select this folder: `/Users/spd/workspace/github/lock_social_media`
+4. Select `/Users/spd/workspace/github/lock_social_media/dist/chrome`
+
+## Load in Firefox
+
+1. Open `about:debugging#/runtime/this-firefox`
+2. Click `Load Temporary Add-on...`
+3. Select `/Users/spd/workspace/github/lock_social_media/dist/firefox/manifest.json`

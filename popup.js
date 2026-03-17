@@ -1,3 +1,5 @@
+const extensionApi = globalThis.browser ?? globalThis.chrome;
+
 const DEFAULTS = {
   maxUsageMinutes: 15,
   blockDurationMinutes: 1
@@ -58,11 +60,9 @@ function showStatus(message, kind = "") {
 }
 
 function activeUrl() {
-  return new Promise((resolve) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      resolve(tabs[0]?.url || "");
-    });
-  });
+  return extensionApi.tabs
+    .query({ active: true, currentWindow: true })
+    .then((tabs) => tabs[0]?.url || "");
 }
 
 function renderSiteList() {
@@ -116,7 +116,7 @@ function renderSiteList() {
 
 async function loadDashboard() {
   const url = await activeUrl();
-  dashboardData = await chrome.runtime.sendMessage({ type: "get-dashboard-data", activeUrl: url });
+  dashboardData = await extensionApi.runtime.sendMessage({ type: "get-dashboard-data", activeUrl: url });
   elements.maxUsageMinutes.value = dashboardData.settings.maxUsageMinutes || DEFAULTS.maxUsageMinutes;
   elements.blockDurationMinutes.value = dashboardData.settings.blockDurationMinutes || DEFAULTS.blockDurationMinutes;
   const activeSite = dashboardData.sites.find((site) => site.id === dashboardData.activeSiteId);
@@ -142,7 +142,7 @@ async function saveSettings() {
     return;
   }
 
-  await chrome.runtime.sendMessage({ type: "save-settings", settings });
+  await extensionApi.runtime.sendMessage({ type: "save-settings", settings });
   showStatus("Saved locally on this device.", "success");
   await loadDashboard();
 }
@@ -179,7 +179,7 @@ if (elements.saveButton) {
 
 if (elements.openOptionsButton) {
   elements.openOptionsButton.addEventListener("click", () => {
-    chrome.runtime.openOptionsPage();
+    extensionApi.runtime.openOptionsPage();
   });
 }
 

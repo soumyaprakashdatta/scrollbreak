@@ -1,3 +1,5 @@
+const extensionApi = globalThis.browser ?? globalThis.chrome;
+
 const HEARTBEAT_MS = 1000;
 const OVERLAY_ID = "social-lock-overlay-root";
 
@@ -158,7 +160,7 @@ function showOverlay(snapshot) {
   }
 
   overlayIntervalId = window.setInterval(async () => {
-    const fresh = await chrome.runtime.sendMessage({ type: "get-site-state", url: getPageUrl() });
+    const fresh = await extensionApi.runtime.sendMessage({ type: "get-site-state", url: getPageUrl() });
     if (!fresh?.tracked || !fresh?.isBlocked) {
       hideOverlay();
       return;
@@ -196,7 +198,7 @@ async function sendHeartbeat() {
   const elapsedMs = now - lastHeartbeatAt;
   lastHeartbeatAt = now;
 
-  const response = await chrome.runtime.sendMessage({
+  const response = await extensionApi.runtime.sendMessage({
     type: "heartbeat",
     url: getPageUrl(),
     elapsedMs
@@ -211,7 +213,7 @@ async function sendHeartbeat() {
 
 async function checkImmediateState() {
   lastHeartbeatAt = Date.now();
-  const response = await chrome.runtime.sendMessage({
+  const response = await extensionApi.runtime.sendMessage({
     type: "get-site-state",
     url: getPageUrl()
   }).catch(() => null);

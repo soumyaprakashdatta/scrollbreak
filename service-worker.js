@@ -1,3 +1,5 @@
+const extensionApi = globalThis.browser ?? globalThis.chrome;
+
 const DEFAULT_USAGE_MINUTES = 15;
 const DEFAULT_BLOCK_MINUTES = 1;
 
@@ -29,11 +31,11 @@ function createDefaultState() {
 }
 
 async function getStoredData(keys) {
-  return chrome.storage.local.get(keys);
+  return extensionApi.storage.local.get(keys);
 }
 
 async function setStoredData(data) {
-  return chrome.storage.local.set(data);
+  return extensionApi.storage.local.set(data);
 }
 
 function sanitizeMinutes(value, fallback) {
@@ -248,15 +250,15 @@ async function handleGetDashboardData(activeUrl) {
   };
 }
 
-chrome.runtime.onInstalled.addListener(() => {
+extensionApi.runtime.onInstalled.addListener(() => {
   ensureData();
 });
 
-chrome.runtime.onStartup.addListener(() => {
+extensionApi.runtime.onStartup.addListener(() => {
   ensureData();
 });
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+extensionApi.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   (async () => {
     if (message?.type === "get-settings") {
       const { settings } = await getSettingsAndState();

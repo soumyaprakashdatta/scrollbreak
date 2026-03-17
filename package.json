@@ -1,0 +1,12 @@
+{
+  "name": "scrollbrake",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cross-browser WebExtension build for ScrollBrake.",
+  "scripts": {
+    "build": "node scripts/build.mjs all",
+    "build:chrome": "node scripts/build.mjs chrome",
+    "build:firefox": "node scripts/build.mjs firefox",
+    "check": "node --check service-worker.js && node --check content-script.js && node --check popup.js && node --check scripts/build.mjs"
+  }
+}
