@@ -18,6 +18,9 @@
   --green: #258060;
   --danger: #b84242;
   --shadow: 0 22px 44px rgba(30, 34, 48, 0.14);
+  --panel-border: rgba(255, 255, 255, 0.52);
+  --panel-highlight: rgba(255, 255, 255, 0.58);
+  --panel-shadow-soft: 0 12px 28px rgba(30, 34, 48, 0.08);
   --radius-lg: 24px;
   --radius-md: 18px;
   --radius-sm: 12px;
@@ -45,6 +48,9 @@
   --green: #63d3a6;
   --danger: #ff8f8f;
   --shadow: 0 26px 60px rgba(0, 0, 0, 0.4);
+  --panel-border: rgba(255, 255, 255, 0.08);
+  --panel-highlight: rgba(255, 255, 255, 0.04);
+  --panel-shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.22);
   --site-card-bg: rgba(18, 25, 39, 0.88);
   --meter-track: rgba(255, 255, 255, 0.18);
 }
@@ -69,6 +75,9 @@
   --green: #258060;
   --danger: #b84242;
   --shadow: 0 22px 44px rgba(30, 34, 48, 0.14);
+  --panel-border: rgba(255, 255, 255, 0.52);
+  --panel-highlight: rgba(255, 255, 255, 0.58);
+  --panel-shadow-soft: 0 12px 28px rgba(30, 34, 48, 0.08);
   --radius-lg: 24px;
   --radius-md: 18px;
   --radius-sm: 12px;
@@ -97,6 +106,9 @@
     --green: #63d3a6;
     --danger: #ff8f8f;
     --shadow: 0 26px 60px rgba(0, 0, 0, 0.4);
+    --panel-border: rgba(255, 255, 255, 0.08);
+    --panel-highlight: rgba(255, 255, 255, 0.04);
+    --panel-shadow-soft: 0 14px 34px rgba(0, 0, 0, 0.22);
     --site-card-bg: rgba(18, 25, 39, 0.88);
     --meter-track: rgba(255, 255, 255, 0.18);
   }
@@ -137,14 +149,29 @@ body.popup-page .app-shell {
 .hero,
 .panel,
 .privacy-note {
+  position: relative;
   margin-bottom: 14px;
   padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--panel-border);
   border-radius: var(--radius-lg);
-  background: var(--panel);
-  box-shadow: var(--shadow);
+  background:
+    linear-gradient(180deg, var(--panel-highlight), transparent 18%),
+    var(--panel);
+  box-shadow: var(--panel-shadow-soft), var(--shadow);
   -webkit-backdrop-filter: blur(18px);
   backdrop-filter: blur(18px);
+}
+
+.hero::after,
+.panel::after,
+.privacy-note::after {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 24%);
+  opacity: 0.7;
 }
 
 .hero {
@@ -213,6 +240,8 @@ body.popup-page .hero-chip {
   justify-content: space-between;
   gap: 12px;
   margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .settings-grid {
@@ -243,7 +272,10 @@ body.popup-page .settings-grid {
   padding: 0 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  background: var(--panel-strong);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), transparent 40%),
+    var(--panel-strong);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 body.popup-page .input-with-suffix {
@@ -282,7 +314,10 @@ body.popup-page .site-list {
   padding: 14px;
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
-  background: var(--site-card-bg);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), transparent 42%),
+    var(--site-card-bg);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 body.popup-page .site-card {
@@ -433,6 +468,11 @@ body.popup-page .text-button {
 .text-button {
   color: var(--blue);
   background: transparent;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.text-button:hover {
+  background: rgba(127, 127, 127, 0.08);
 }
 
 .status-message {
