@@ -1,7 +1,7 @@
 const extensionApi = globalThis.browser ?? globalThis.chrome;
 
 const DEFAULT_USAGE_MINUTES = 15;
-const DEFAULT_BLOCK_MINUTES = 1;
+const DEFAULT_BLOCK_MINUTES = 5;
 
 const BUILTIN_SITES = [
   { id: "facebook", label: "Facebook", patterns: ["facebook.com"], enabled: true, builtin: true },

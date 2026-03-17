@@ -87,5 +87,5 @@ Build outputs:
 ## Current Defaults
 
 - Usage limit: `15` minutes
-- Lockout duration: `1` minute
+- Lockout duration: `5` minutes
 - Enabled built-ins: Facebook, Instagram, X, and YouTube

@@ -2,7 +2,7 @@ const extensionApi = globalThis.browser ?? globalThis.chrome;
 
 const DEFAULTS = {
   maxUsageMinutes: 15,
-  blockDurationMinutes: 1
+  blockDurationMinutes: 5
 };
 
 const elements = {
