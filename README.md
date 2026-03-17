@@ -2,6 +2,8 @@
 
 ScrollBrake is a privacy-first browser extension that limits active time on social media sites. Each enabled site gets its own usage budget. When the budget runs out, ScrollBrake locks the site with a full-page countdown takeover for the configured break period.
 
+It is built as a plain JavaScript Manifest V3 WebExtension with separate Chrome and Firefox outputs generated from the same source files.
+
 ## Features
 
 - Built-in toggles for Facebook, Instagram, X, and YouTube
@@ -22,15 +24,21 @@ ScrollBrake stores settings and timer state only in local extension storage on t
 
 ## Project Structure
 
-- Shared source lives in the project root
+- `service-worker.js` handles storage, site usage tracking, and lock state
+- `content-script.js` runs on matched pages and displays the lock overlay
+- `popup.html` and `popup.js` power the toolbar popup
+- `options.html` reuses the same settings logic in a full-page view
 - Browser build outputs are generated into `dist/chrome` and `dist/firefox`
 - Browser-specific manifest differences are handled by `scripts/build.mjs`
 
 ## Development Requirements
 
 - Node.js installed locally
+- npm available locally
 - Chrome for the Chrome build
 - Firefox for the Firefox build
+
+This project has no runtime or build dependencies, so there is no separate `npm install` step.
 
 ## Build
 
