@@ -54,6 +54,10 @@ const baseManifest = {
 const browserOverrides = {
   chrome: {},
   firefox: {
+    background: {
+      scripts: ["service-worker.js"],
+      type: "module"
+    },
     browser_specific_settings: {
       gecko: {
         id: "scrollbrake@local.dev"
@@ -63,10 +67,16 @@ const browserOverrides = {
 };
 
 function buildManifest(target) {
-  return {
+  const manifest = {
     ...baseManifest,
     ...browserOverrides[target]
   };
+
+  if (target === "firefox") {
+    delete manifest.background.service_worker;
+  }
+
+  return manifest;
 }
 
 function copySharedAssets(targetDir) {
