@@ -1,10 +1,11 @@
-import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const rootDir = join(__dirname, "..");
 const distDir = join(rootDir, "dist");
+const packageJson = JSON.parse(readFileSync(join(rootDir, "package.json"), "utf8"));
 
 const sharedFiles = [
   "README.md",
@@ -22,7 +23,7 @@ const baseManifest = {
   manifest_version: 3,
   name: "ScrollBrake",
   description: "Block social media sites after a configurable amount of active usage time with a timed lockout.",
-  version: "1.0.0",
+  version: packageJson.version,
   icons: {
     16: "icons/scrollbrake-16.png",
     32: "icons/scrollbrake-32.png",
