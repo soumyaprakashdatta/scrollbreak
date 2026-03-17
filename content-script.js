@@ -36,11 +36,7 @@ function ensureOverlay() {
         display: none;
         align-items: stretch;
         justify-content: stretch;
-        background:
-          radial-gradient(circle at top, rgba(255, 203, 107, 0.24), transparent 26%),
-          radial-gradient(circle at bottom right, rgba(73, 166, 255, 0.2), transparent 24%),
-          linear-gradient(180deg, rgba(7, 10, 18, 0.96), rgba(10, 14, 24, 0.98));
-        backdrop-filter: blur(18px);
+        background: #0f1724;
         font-family: "Avenir Next", "Segoe UI", sans-serif;
         color: #f5f7fb;
       }
@@ -100,7 +96,7 @@ function ensureOverlay() {
         letter-spacing: 0.08em;
         text-transform: uppercase;
         color: #08111c;
-        background: linear-gradient(135deg, #ffd36d, #ff9a5a);
+        background: #ffd36d;
       }
 
       #${OVERLAY_ID} h1 {
@@ -132,15 +128,14 @@ function ensureOverlay() {
         height: 12px;
         overflow: hidden;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.16);
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+        background: #2d3748;
       }
 
       #${OVERLAY_ID} .meter-fill {
         height: 100%;
         width: 100%;
         border-radius: inherit;
-        background: linear-gradient(90deg, #ffd36d, #ff8f6b, #5cc8ff);
+        background: #ff8f6b;
       }
 
       #${OVERLAY_ID} .footer {

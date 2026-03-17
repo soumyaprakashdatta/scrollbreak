@@ -86,10 +86,12 @@ function renderSiteList() {
         <h3>${site.label}</h3>
         <p>${site.patterns.join(", ")}</p>
       </div>
-      <div class="site-metric">
-        <strong>${stats?.isBlocked ? "Locked" : "Ready"}</strong>
-        <span>${stateLabel}</span>
-        <div class="site-meter"><span style="width:${usageRatio}%;"></span></div>
+      <div class="site-actions">
+        <div class="site-metric">
+          <strong>${stats?.isBlocked ? "Locked" : "Ready"}</strong>
+          <span>${stateLabel}</span>
+          <div class="site-meter"><span style="width:${usageRatio}%;"></span></div>
+        </div>
       </div>
     `;
 
@@ -101,13 +103,13 @@ function renderSiteList() {
     if (!site.builtin) {
       const removeButton = document.createElement("button");
       removeButton.type = "button";
-      removeButton.className = "text-button";
+      removeButton.className = "text-button site-remove";
       removeButton.textContent = "Remove";
       removeButton.addEventListener("click", () => {
         dashboardData.settings.sites = dashboardData.settings.sites.filter((entry) => entry.id !== site.id);
         renderSiteList();
       });
-      card.appendChild(removeButton);
+      card.querySelector(".site-actions").appendChild(removeButton);
     }
 
     elements.siteList.appendChild(card);

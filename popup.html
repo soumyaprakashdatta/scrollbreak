@@ -9,31 +9,33 @@
   </head>
   <body class="popup-page">
     <main class="app-shell">
-      <section class="hero">
-        <div>
+      <section class="hero popup-hero">
+        <div class="popup-hero-topline">
           <p class="eyebrow">ScrollBrake</p>
-          <h1>Brake the scroll.</h1>
-          <p class="lede">Quick limits, timed breaks, local-only data.</p>
+          <div class="hero-chip" id="active-site-chip">No tracked site open</div>
         </div>
-        <div class="hero-chip" id="active-site-chip">No tracked site open</div>
+        <div class="popup-hero-copy">
+          <h1>Brake the scroll.</h1>
+          <p class="lede">Focused limits, timed resets, stored locally.</p>
+        </div>
       </section>
 
-      <section class="panel">
-        <div class="panel-heading">
+      <section class="panel popup-section popup-section-limits">
+        <div class="panel-heading popup-heading">
           <div>
             <h2>Limits</h2>
-            <p>Applies independently to each enabled site.</p>
+            <p>Set the rhythm for each enabled site.</p>
           </div>
         </div>
-        <form id="settings-form" class="settings-grid">
-          <label class="field">
+        <form id="settings-form" class="settings-grid popup-settings-grid">
+          <label class="field popup-stat-field">
             <span>Usage limit</span>
             <div class="input-with-suffix">
               <input id="max-usage-minutes" name="maxUsageMinutes" type="number" min="1" step="1" required />
               <span>min</span>
             </div>
           </label>
-          <label class="field">
+          <label class="field popup-stat-field">
             <span>Lockout time</span>
             <div class="input-with-suffix">
               <input id="block-duration-minutes" name="blockDurationMinutes" type="number" min="1" step="1" required />
@@ -43,16 +45,16 @@
         </form>
       </section>
 
-      <section class="panel">
-        <div class="panel-heading">
+      <section class="panel popup-section popup-section-sites">
+        <div class="panel-heading popup-heading">
           <div>
             <h2>Tracked sites</h2>
-            <p>Built-ins plus your own domains.</p>
+            <p>Built-ins plus any domain you add.</p>
           </div>
         </div>
         <div id="site-list" class="site-list"></div>
-        <form id="custom-site-form" class="custom-site-form">
-          <label class="field field-grow">
+        <form id="custom-site-form" class="custom-site-form popup-custom-site-form">
+          <label class="field field-grow popup-inline-field">
             <span>Add domain</span>
             <input id="custom-site-domain" type="text" placeholder="example.com" autocomplete="off" />
           </label>
@@ -60,7 +62,7 @@
         </form>
       </section>
 
-      <footer class="app-footer">
+      <footer class="app-footer popup-footer">
         <button id="save-button" class="primary-button" type="button">Save changes</button>
         <button id="open-options-button" class="text-button" type="button">Open full page</button>
       </footer>
