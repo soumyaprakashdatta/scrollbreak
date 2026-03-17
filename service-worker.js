@@ -267,11 +267,10 @@ extensionApi.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     }
 
     if (message?.type === "save-settings") {
-      const current = await getSettingsAndState();
       const nextSettings = sanitizeSettings(message.settings);
       await setStoredData({
         [STORAGE_KEYS.settings]: nextSettings,
-        [STORAGE_KEYS.state]: current.state
+        [STORAGE_KEYS.state]: createDefaultState()
       });
       sendResponse({ ok: true, settings: nextSettings });
       return;
