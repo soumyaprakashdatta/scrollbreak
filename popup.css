@@ -138,6 +138,7 @@ body {
 body.popup-page {
   width: 320px;
   min-width: 0;
+  max-height: 600px;
   background: #11161e;
 }
 
@@ -145,11 +146,13 @@ body.popup-page .popup-shell {
   padding: 0;
   width: 100%;
   max-width: none;
+  max-height: 600px;
   margin: 0;
   border: 0;
   border-radius: 0;
   background: #151b24;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .hero,
