@@ -132,16 +132,20 @@ body.options-page .custom-site-form {
 }
 
 body.options-page .custom-site-form .field-grow {
-  padding: 0 16px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+body.options-page .custom-site-form .field-grow > span {
+  margin-bottom: 6px;
+}
+
+body.options-page .custom-site-form .field-grow input {
+  padding: 14px 16px;
   border: 1px solid #d8ccbb;
   border-radius: 18px;
   background: #fffdf9;
-}
-
-body.options-page .field-grow input {
-  padding: 12px 0;
-  border: 0;
-  background: transparent;
 }
 
 body.options-page .primary-button,
