@@ -7,6 +7,6 @@
     "build": "node scripts/build.mjs all",
     "build:chrome": "node scripts/build.mjs chrome",
     "build:firefox": "node scripts/build.mjs firefox",
-    "check": "node --check service-worker.js && node --check content-script.js && node --check popup.js && node --check scripts/build.mjs"
+    "check": "node --check service-worker.js && node --check content-script.js && node --check popup.js && node --check ui-theme.js && node --check scripts/build.mjs"
   }
 }

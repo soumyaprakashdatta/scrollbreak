@@ -13,7 +13,8 @@ const sharedFiles = [
   "popup.css",
   "popup.html",
   "popup.js",
-  "service-worker.js"
+  "service-worker.js",
+  "ui-theme.js"
 ];
 
 const baseManifest = {
