@@ -136,15 +136,15 @@ body {
 }
 
 body.popup-page {
-  min-width: 360px;
+  min-width: 344px;
   background: #11161e;
 }
 
 body.popup-page .popup-shell {
   padding: 0;
-  margin: 12px;
+  margin: 8px;
   border: 1px solid #252d3b;
-  border-radius: 20px;
+  border-radius: 16px;
   background: #151b24;
   overflow: hidden;
 }
@@ -178,13 +178,13 @@ body.popup-page .panel,
 body.popup-page .app-footer,
 body.popup-page .popup-header,
 body.popup-page .status-message {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .popup-header {
-  padding-top: 18px;
-  padding-bottom: 16px;
+  padding-top: 14px;
+  padding-bottom: 12px;
   border-bottom: 1px solid #252d3b;
 }
 
@@ -193,7 +193,7 @@ body.popup-page .status-message {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
 body.popup-page .eyebrow {
@@ -226,18 +226,18 @@ body.popup-page .eyebrow {
 }
 
 body.popup-page .popup-header h1 {
-  font-size: 25px;
-  line-height: 1.08;
+  font-size: 18px;
+  line-height: 1.15;
   letter-spacing: -0.05em;
   font-weight: 700;
   color: #f4f7fb;
 }
 
 body.popup-page .popup-header .lede {
-  max-width: 29ch;
-  margin-top: 6px;
-  font-size: 13px;
-  line-height: 1.5;
+  max-width: 34ch;
+  margin-top: 4px;
+  font-size: 12px;
+  line-height: 1.45;
   color: #96a1b3;
 }
 
@@ -260,9 +260,9 @@ body.popup-page .popup-header .lede {
 }
 
 body.popup-page .hero-chip {
-  max-width: 170px;
-  padding: 7px 10px;
-  font-size: 11px;
+  max-width: 156px;
+  padding: 6px 9px;
+  font-size: 10px;
   text-align: right;
   border: 1px solid #313b4d;
   background: #1a2130;
@@ -279,31 +279,31 @@ body.popup-page .hero-chip {
 }
 
 .popup-section {
-  padding-top: 16px;
-  padding-bottom: 18px;
+  padding-top: 12px;
+  padding-bottom: 12px;
   border-bottom: 1px solid #252d3b;
 }
 
 .popup-heading {
   display: grid;
-  gap: 4px;
-  margin-bottom: 12px;
+  gap: 2px;
+  margin-bottom: 10px;
   padding-bottom: 0;
   border-bottom: 0;
 }
 
 .popup-heading h2 {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #eef2f8;
 }
 
 .popup-heading p {
   margin: 0;
-  font-size: 12px;
-  line-height: 1.4;
+  font-size: 11px;
+  line-height: 1.35;
   color: #8d98aa;
 }
 
@@ -314,23 +314,23 @@ body.popup-page .hero-chip {
 }
 
 body.popup-page .settings-grid {
-  gap: 12px;
+  gap: 10px;
 }
 
 .popup-settings-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+  gap: 10px;
 }
 
 .field {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   font-size: 13px;
   font-weight: 600;
 }
 
 .popup-stat-field {
-  gap: 8px;
+  gap: 6px;
   padding-top: 0;
 }
 
@@ -341,7 +341,7 @@ body.popup-page .settings-grid {
 
 body.popup-page .popup-stat-field > span,
 body.popup-page .popup-inline-field > span {
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #8390a5;
@@ -362,9 +362,9 @@ body.popup-page .popup-inline-field > span {
 }
 
 body.popup-page .input-with-suffix {
-  min-height: 56px;
-  padding: 0 14px;
-  border-radius: 14px;
+  min-height: 44px;
+  padding: 0 12px;
+  border-radius: 12px;
   border-color: #2c3444;
   background: #121824;
 }
@@ -380,16 +380,16 @@ input {
 }
 
 body.popup-page input {
-  padding: 12px 0;
+  padding: 10px 0;
   color: #f4f7fb;
-  font-size: 26px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1;
 }
 
 body.popup-page .input-with-suffix span {
   color: #8d98aa;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
 }
 
@@ -411,7 +411,7 @@ body.popup-page input[type="number"]::-webkit-inner-spin-button {
 
 body.popup-page .site-list {
   gap: 0;
-  margin-top: 2px;
+  margin-top: 0;
 }
 
 .site-card {
@@ -427,13 +427,13 @@ body.popup-page .site-list {
 
 .site-actions {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   justify-items: end;
 }
 
 body.popup-page .site-card {
   gap: 14px;
-  padding: 14px 0;
+  padding: 11px 0;
   grid-template-columns: auto minmax(0, 1fr) auto;
   border: 0;
   border-bottom: 1px solid #252d3b;
@@ -447,8 +447,8 @@ body.popup-page .site-card:last-child {
 
 .site-toggle {
   appearance: none;
-  width: 44px;
-  height: 24px;
+  width: 38px;
+  height: 22px;
   position: relative;
   border-radius: 999px;
   background: #283142;
@@ -461,8 +461,8 @@ body.popup-page .site-card:last-child {
   position: absolute;
   top: 3px;
   left: 3px;
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #96a1b3;
   box-shadow: none;
@@ -474,7 +474,7 @@ body.popup-page .site-card:last-child {
 }
 
 .site-toggle:checked::after {
-  transform: translateX(20px);
+  transform: translateX(16px);
   background: #edbb82;
 }
 
@@ -484,11 +484,11 @@ body.popup-page .site-card:last-child {
 
 .site-card h3 {
   margin: 0 0 4px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 body.popup-page .site-card h3 {
-  font-size: 14px;
+  font-size: 13px;
   letter-spacing: -0.02em;
   color: #f4f7fb;
 }
@@ -500,7 +500,7 @@ body.popup-page .site-card h3 {
 }
 
 body.popup-page .site-card p {
-  font-size: 11px;
+  font-size: 10px;
   color: #7f8a9d;
 }
 
@@ -513,22 +513,23 @@ body.popup-page .site-card p {
 
 body.popup-page .site-metric {
   min-width: 0;
-  width: 100px;
+  width: 92px;
   color: #96a1b3;
+  font-size: 11px;
 }
 
 body.popup-page .site-actions {
-  width: 100px;
+  width: 92px;
 }
 
 .site-state-pill {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 56px;
-  padding: 4px 8px;
+  min-width: 52px;
+  padding: 3px 7px;
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -545,9 +546,9 @@ body.popup-page .site-actions {
 
 .site-meter {
   width: 100%;
-  max-width: 100px;
-  height: 6px;
-  margin-top: 5px;
+  max-width: 92px;
+  height: 5px;
+  margin-top: 4px;
   overflow: hidden;
   border-radius: 999px;
   background: #283142;
@@ -576,7 +577,7 @@ body.popup-page .site-meter {
 body.popup-page .custom-site-form,
 body.popup-page .app-footer {
   gap: 10px;
-  margin-top: 14px;
+  margin-top: 10px;
 }
 
 .popup-custom-site-form {
@@ -584,15 +585,15 @@ body.popup-page .app-footer {
 }
 
 .popup-inline-field {
-  gap: 6px;
+  gap: 5px;
 }
 
 .popup-inline-field input {
-  padding: 13px 14px;
+  padding: 11px 12px;
   border: 1px solid #2c3444;
-  border-radius: 14px;
+  border-radius: 12px;
   background: #121824;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
 }
 
@@ -613,8 +614,8 @@ button {
 body.popup-page .primary-button,
 body.popup-page .secondary-button,
 body.popup-page .text-button {
-  padding: 11px 13px;
-  border-radius: 14px;
+  padding: 10px 12px;
+  border-radius: 12px;
   font-size: 13px;
 }
 
@@ -645,7 +646,7 @@ body.popup-page .text-button {
 .site-remove {
   padding: 0;
   border-radius: 0;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
 }
 
@@ -661,8 +662,8 @@ body.popup-page .site-remove {
 
 body.popup-page .app-footer {
   margin-top: 0;
-  padding-top: 12px;
-  padding-bottom: 14px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   align-items: center;
 }
 
@@ -673,8 +674,8 @@ body.popup-page .popup-footer {
 body.popup-page .status-message {
   margin: 0;
   padding-top: 0;
-  padding-bottom: 14px;
-  font-size: 12px;
+  padding-bottom: 10px;
+  font-size: 11px;
   color: #7f8a9d;
 }
 
@@ -693,6 +694,11 @@ body.popup-page .status-message {
 
   .settings-grid {
     grid-template-columns: 1fr;
+  }
+
+  body.popup-page .settings-grid,
+  body.popup-page .popup-settings-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .site-card {
