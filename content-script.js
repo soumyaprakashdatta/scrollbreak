@@ -34,34 +34,66 @@ function ensureOverlay() {
         inset: 0;
         z-index: 2147483647;
         display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 24px;
+        align-items: stretch;
+        justify-content: stretch;
         background:
-          radial-gradient(circle at top, rgba(255, 203, 107, 0.28), transparent 28%),
-          radial-gradient(circle at bottom right, rgba(73, 166, 255, 0.22), transparent 24%),
-          rgba(10, 14, 24, 0.9);
-        backdrop-filter: blur(14px);
+          radial-gradient(circle at top, rgba(255, 203, 107, 0.24), transparent 26%),
+          radial-gradient(circle at bottom right, rgba(73, 166, 255, 0.2), transparent 24%),
+          linear-gradient(180deg, rgba(7, 10, 18, 0.96), rgba(10, 14, 24, 0.98));
+        backdrop-filter: blur(18px);
         font-family: "Avenir Next", "Segoe UI", sans-serif;
+        color: #f5f7fb;
       }
 
       #${OVERLAY_ID} * {
         box-sizing: border-box;
       }
 
-      #${OVERLAY_ID} .social-lock-card {
-        width: min(480px, 100%);
-        padding: 32px;
-        border-radius: 28px;
-        color: #f5f7fb;
-        background: linear-gradient(180deg, rgba(22, 29, 46, 0.96), rgba(9, 12, 20, 0.98));
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 24px 80px rgba(0, 0, 0, 0.4);
+      #${OVERLAY_ID} .social-lock-screen {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        width: 100%;
+        min-height: 100vh;
+        padding: clamp(20px, 4vw, 44px);
+      }
+
+      #${OVERLAY_ID} .social-lock-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      #${OVERLAY_ID} .social-lock-brand {
+        max-width: 280px;
+      }
+
+      #${OVERLAY_ID} .social-lock-brand strong {
+        display: block;
+        margin-bottom: 6px;
+        font-size: 13px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(245, 247, 251, 0.72);
+      }
+
+      #${OVERLAY_ID} .social-lock-brand span {
+        font-size: 14px;
+        line-height: 1.5;
+        color: rgba(245, 247, 251, 0.62);
+      }
+
+      #${OVERLAY_ID} .social-lock-stage {
+        display: grid;
+        align-content: center;
+        width: min(960px, 100%);
+        margin: 0 auto;
+        padding: 24px 0;
       }
 
       #${OVERLAY_ID} .eyebrow {
         display: inline-flex;
-        margin-bottom: 16px;
+        margin-bottom: 20px;
         padding: 6px 12px;
         border-radius: 999px;
         font-size: 12px;
@@ -72,27 +104,31 @@ function ensureOverlay() {
       }
 
       #${OVERLAY_ID} h1 {
-        margin: 0 0 12px;
-        font-size: clamp(28px, 5vw, 40px);
-        line-height: 1;
+        margin: 0 0 18px;
+        max-width: 10ch;
+        font-size: clamp(48px, 9vw, 116px);
+        line-height: 0.94;
+        letter-spacing: -0.06em;
       }
 
       #${OVERLAY_ID} p {
         margin: 0;
-        font-size: 16px;
+        max-width: 720px;
+        font-size: clamp(18px, 2vw, 24px);
         line-height: 1.6;
         color: rgba(245, 247, 251, 0.82);
       }
 
       #${OVERLAY_ID} .countdown {
-        margin: 28px 0 18px;
-        font-size: clamp(44px, 14vw, 84px);
-        line-height: 1;
+        margin: 34px 0 20px;
+        font-size: clamp(64px, 16vw, 180px);
+        line-height: 0.88;
         font-weight: 700;
         letter-spacing: -0.05em;
       }
 
       #${OVERLAY_ID} .meter {
+        width: 100%;
         height: 12px;
         overflow: hidden;
         border-radius: 999px;
@@ -108,20 +144,65 @@ function ensureOverlay() {
       }
 
       #${OVERLAY_ID} .footer {
-        margin-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 16px;
+        margin-top: 20px;
         font-size: 14px;
         color: rgba(245, 247, 251, 0.6);
       }
+
+      #${OVERLAY_ID} .footer-note {
+        max-width: 520px;
+      }
+
+      #${OVERLAY_ID} .footer-tag {
+        white-space: nowrap;
+        color: rgba(245, 247, 251, 0.42);
+      }
+
+      @media (max-width: 720px) {
+        #${OVERLAY_ID} .social-lock-screen {
+          padding: 20px;
+        }
+
+        #${OVERLAY_ID} .social-lock-topbar,
+        #${OVERLAY_ID} .footer {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        #${OVERLAY_ID} h1 {
+          max-width: none;
+          font-size: clamp(40px, 15vw, 74px);
+        }
+
+        #${OVERLAY_ID} .countdown {
+          font-size: clamp(56px, 22vw, 112px);
+        }
+      }
     </style>
-    <div class="social-lock-card" role="dialog" aria-modal="true" aria-live="polite">
-      <div class="eyebrow">Focus mode</div>
-      <h1 id="social-lock-title">Time for a quick reset</h1>
-      <p id="social-lock-message">This site is temporarily locked. You can come back when the countdown ends.</p>
-      <div class="countdown" id="social-lock-countdown">1:00</div>
-      <div class="meter" aria-hidden="true">
-        <div class="meter-fill" id="social-lock-meter"></div>
+    <div class="social-lock-screen" role="dialog" aria-modal="true" aria-live="polite">
+      <div class="social-lock-topbar">
+        <div class="social-lock-brand">
+          <strong>ScrollBrake</strong>
+          <span>Focus mode is active. This break timer is stored locally on your device.</span>
+        </div>
+        <div class="eyebrow">Locked</div>
       </div>
-      <div class="footer" id="social-lock-footer">ScrollBrake keeps your settings and timers on this device only.</div>
+      <div class="social-lock-stage">
+        <h1 id="social-lock-title">Time for a quick reset</h1>
+        <p id="social-lock-message">This site is temporarily locked. You can come back when the countdown ends.</p>
+        <div class="countdown" id="social-lock-countdown">1:00</div>
+        <div class="meter" aria-hidden="true">
+          <div class="meter-fill" id="social-lock-meter"></div>
+        </div>
+      </div>
+      <div class="footer">
+        <div class="footer-note" id="social-lock-footer">ScrollBrake keeps your settings and timers on this device only.</div>
+        <div class="footer-tag">Take a short break, then jump back in.</div>
+      </div>
     </div>
   `;
 
