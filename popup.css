@@ -137,15 +137,15 @@ body {
 
 body.popup-page {
   min-width: 360px;
-  background: #ece9e2;
+  background: #121110;
 }
 
 body.popup-page .app-shell {
   padding: 0;
   margin: 12px;
-  border: 1px solid #d7d1c6;
-  border-radius: 22px;
-  background: #f7f5f0;
+  border: 1px solid #292623;
+  border-radius: 18px;
+  background: #181614;
   overflow: hidden;
 }
 
@@ -184,9 +184,9 @@ body.popup-page .status-message {
 }
 
 .popup-hero {
-  padding-top: 18px;
-  padding-bottom: 18px;
-  border-bottom: 1px solid #d7d1c6;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #292623;
 }
 
 .popup-hero-topline {
@@ -194,17 +194,19 @@ body.popup-page .status-message {
   justify-content: space-between;
   align-items: center;
   gap: 10px;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .popup-hero-copy {
   display: grid;
-  gap: 6px;
+  gap: 4px;
 }
 
 body.popup-page .eyebrow {
   margin-bottom: 0;
-  color: #7f684b;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: #c8a06a;
 }
 
 .eyebrow {
@@ -220,7 +222,7 @@ body.popup-page .eyebrow {
 .panel h2,
 .privacy-note h2 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
   letter-spacing: -0.03em;
 }
 
@@ -230,15 +232,19 @@ body.popup-page .eyebrow {
 }
 
 body.popup-page .hero h1 {
-  font-size: 28px;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
+  font-size: 24px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  color: #f3efe9;
 }
 
 body.popup-page .lede {
-  max-width: 24ch;
+  max-width: 28ch;
   margin-top: 4px;
-  color: #5f5a52;
+  font-size: 13px;
+  line-height: 1.45;
+  color: #9f978d;
 }
 
 .lede,
@@ -260,13 +266,13 @@ body.popup-page .lede {
 }
 
 body.popup-page .hero-chip {
-  max-width: 180px;
-  padding: 7px 11px;
-  font-size: 12px;
+  max-width: 160px;
+  padding: 7px 10px;
+  font-size: 11px;
   text-align: right;
-  border: 1px solid #ddd6ca;
-  background: transparent;
-  color: #4a443b;
+  border: 1px solid #34302b;
+  background: #211e1b;
+  color: #d8d1c8;
 }
 
 .panel-heading {
@@ -281,24 +287,28 @@ body.popup-page .hero-chip {
 .popup-section {
   padding-top: 14px;
   padding-bottom: 14px;
-  border-bottom: 1px solid #ddd6ca;
+  border-bottom: 1px solid #292623;
 }
 
 .popup-heading {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   padding-bottom: 0;
   border-bottom: 0;
 }
 
 .popup-heading h2 {
-  font-size: 15px;
-  letter-spacing: -0.02em;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f0ebe5;
 }
 
 .popup-heading p {
-  margin-top: 4px;
+  margin-top: 3px;
   font-size: 12px;
-  color: #7a7368;
+  line-height: 1.4;
+  color: #8f877d;
 }
 
 .settings-grid {
@@ -313,7 +323,8 @@ body.popup-page .settings-grid {
 
 .popup-settings-grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  border-top: 1px solid #ddd6ca;
+  gap: 10px;
+  border-top: 0;
 }
 
 .field {
@@ -324,13 +335,13 @@ body.popup-page .settings-grid {
 }
 
 .popup-stat-field {
-  gap: 10px;
-  padding-top: 12px;
+  gap: 6px;
+  padding-top: 0;
 }
 
 .popup-stat-field + .popup-stat-field {
-  padding-left: 12px;
-  border-left: 1px solid #ddd6ca;
+  padding-left: 0;
+  border-left: 0;
 }
 
 body.popup-page .popup-stat-field > span,
@@ -338,7 +349,7 @@ body.popup-page .popup-inline-field > span {
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #7a7368;
+  color: #8f877d;
 }
 
 .field-grow {
@@ -356,10 +367,11 @@ body.popup-page .popup-inline-field > span {
 }
 
 body.popup-page .input-with-suffix {
+  min-height: 48px;
   padding: 0 12px;
-  border-radius: 12px;
-  border-color: #d7d1c6;
-  background: transparent;
+  border-radius: 14px;
+  border-color: #34302b;
+  background: #211e1b;
 }
 
 input {
@@ -374,7 +386,16 @@ input {
 
 body.popup-page input {
   padding: 11px 0;
-  color: #1f1d19;
+  color: #f3efe9;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+body.popup-page .input-with-suffix span {
+  color: #8f877d;
+  font-size: 12px;
+  font-weight: 600;
 }
 
 .site-list {
@@ -399,16 +420,16 @@ body.popup-page .site-list {
 
 .site-actions {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   justify-items: end;
 }
 
 body.popup-page .site-card {
   gap: 12px;
-  padding: 12px 0;
+  padding: 14px 0;
   grid-template-columns: auto minmax(0, 1fr) auto;
   border: 0;
-  border-bottom: 1px solid #e1dbd1;
+  border-bottom: 1px solid #292623;
   border-radius: 0;
   background: transparent;
 }
@@ -419,11 +440,11 @@ body.popup-page .site-card:last-child {
 
 .site-toggle {
   appearance: none;
-  width: 48px;
-  height: 28px;
+  width: 44px;
+  height: 24px;
   position: relative;
   border-radius: 999px;
-  background: #c8c1b5;
+  background: #302c28;
   cursor: pointer;
   transition: background 0.2s ease;
 }
@@ -433,20 +454,21 @@ body.popup-page .site-card:last-child {
   position: absolute;
   top: 3px;
   left: 3px;
-  width: 22px;
-  height: 22px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
-  background: #f7f5f0;
+  background: #8f877d;
   box-shadow: none;
   transition: transform 0.2s ease;
 }
 
 .site-toggle:checked {
-  background: var(--accent);
+  background: #6b5334;
 }
 
 .site-toggle:checked::after {
   transform: translateX(20px);
+  background: #e3b176;
 }
 
 .site-card h3 {
@@ -457,6 +479,7 @@ body.popup-page .site-card:last-child {
 body.popup-page .site-card h3 {
   font-size: 14px;
   letter-spacing: -0.02em;
+  color: #f3efe9;
 }
 
 .site-card p {
@@ -467,7 +490,7 @@ body.popup-page .site-card h3 {
 
 body.popup-page .site-card p {
   font-size: 11px;
-  color: #7a7368;
+  color: #8f877d;
 }
 
 .site-metric {
@@ -478,7 +501,7 @@ body.popup-page .site-card p {
 }
 
 body.popup-page .site-metric {
-  color: #7a7368;
+  color: #8f877d;
 }
 
 body.popup-page .site-metric {
@@ -492,19 +515,19 @@ body.popup-page .site-actions {
 
 .site-metric strong {
   display: block;
-  margin-bottom: 4px;
-  color: var(--text);
-  font-size: 14px;
+  margin-bottom: 3px;
+  color: #f3efe9;
+  font-size: 13px;
 }
 
 .site-meter {
   width: 100%;
   max-width: 88px;
-  height: 8px;
-  margin-top: 6px;
+  height: 6px;
+  margin-top: 5px;
   overflow: hidden;
   border-radius: 999px;
-  background: #ddd6ca;
+  background: #302c28;
 }
 
 body.popup-page .site-meter {
@@ -516,7 +539,7 @@ body.popup-page .site-meter {
   display: block;
   height: 100%;
   border-radius: inherit;
-  background: var(--accent);
+  background: #d09a61;
 }
 
 .custom-site-form,
@@ -542,10 +565,12 @@ body.popup-page .app-footer {
 }
 
 .popup-inline-field input {
-  padding: 11px 12px;
-  border: 1px solid #d7d1c6;
-  border-radius: 12px;
-  background: transparent;
+  padding: 12px 13px;
+  border: 1px solid #34302b;
+  border-radius: 14px;
+  background: #211e1b;
+  font-size: 14px;
+  font-weight: 500;
 }
 
 button {
@@ -566,31 +591,32 @@ body.popup-page .primary-button,
 body.popup-page .secondary-button,
 body.popup-page .text-button {
   padding: 11px 13px;
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 13px;
 }
 
 .primary-button {
   flex: 1;
-  color: white;
-  background: var(--accent);
+  color: #171513;
+  background: #d7a269;
   box-shadow: none;
+  font-weight: 700;
 }
 
 .secondary-button {
-  color: #1f1d19;
-  background: #ebe6dc;
+  color: #f3efe9;
+  background: #26221e;
 }
 
 .text-button {
-  color: #6b645a;
+  color: #8f877d;
   background: transparent;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
 .text-button:hover {
-  background: #eee9df;
-  color: #1f1d19;
+  background: #26221e;
+  color: #f3efe9;
 }
 
 .site-remove {
@@ -618,7 +644,7 @@ body.popup-page .app-footer {
 }
 
 body.popup-page .popup-footer {
-  border-top: 1px solid #d7d1c6;
+  border-top: 1px solid #292623;
 }
 
 body.popup-page .status-message {
@@ -626,77 +652,7 @@ body.popup-page .status-message {
   padding-top: 0;
   padding-bottom: 14px;
   font-size: 12px;
-  color: #6b645a;
-}
-
-[data-theme="dark"] body.popup-page {
-  background: #11100f;
-}
-
-[data-theme="dark"] body.popup-page .app-shell {
-  border-color: #2d2925;
-  background: #171513;
-}
-
-[data-theme="dark"] body.popup-page .popup-hero,
-[data-theme="dark"] body.popup-page .popup-section,
-[data-theme="dark"] body.popup-page .popup-footer,
-[data-theme="dark"] body.popup-page .popup-settings-grid,
-[data-theme="dark"] body.popup-page .popup-stat-field + .popup-stat-field,
-[data-theme="dark"] body.popup-page .site-card {
-  border-color: #2d2925;
-}
-
-[data-theme="dark"] body.popup-page .eyebrow {
-  color: #c9a678;
-}
-
-[data-theme="dark"] body.popup-page .lede,
-[data-theme="dark"] body.popup-page .popup-heading p,
-[data-theme="dark"] body.popup-page .popup-stat-field > span,
-[data-theme="dark"] body.popup-page .popup-inline-field > span,
-[data-theme="dark"] body.popup-page .site-card p,
-[data-theme="dark"] body.popup-page .site-metric,
-[data-theme="dark"] body.popup-page .status-message,
-[data-theme="dark"] body.popup-page .text-button {
-  color: #9d968b;
-}
-
-[data-theme="dark"] body.popup-page .hero-chip {
-  border-color: #34302b;
-  color: #d5cec3;
-}
-
-[data-theme="dark"] body.popup-page .input-with-suffix,
-[data-theme="dark"] body.popup-page .popup-inline-field input {
-  border-color: #34302b;
-  background: transparent;
-}
-
-[data-theme="dark"] body.popup-page input,
-[data-theme="dark"] body.popup-page .secondary-button,
-[data-theme="dark"] body.popup-page .text-button:hover {
-  color: #f2ede6;
-}
-
-[data-theme="dark"] body.popup-page .site-toggle {
-  background: #4a433a;
-}
-
-[data-theme="dark"] body.popup-page .site-toggle::after {
-  background: #171513;
-}
-
-[data-theme="dark"] body.popup-page .site-meter {
-  background: #34302b;
-}
-
-[data-theme="dark"] body.popup-page .secondary-button {
-  background: #26221e;
-}
-
-[data-theme="dark"] body.popup-page .text-button:hover {
-  background: #26221e;
+  color: #8f877d;
 }
 
 .status-message.success {
@@ -731,12 +687,12 @@ body.popup-page .status-message {
     align-items: stretch;
   }
 
-  .popup-hero-topline {
+  body.options-page .popup-hero-topline {
     flex-direction: column;
     align-items: flex-start;
   }
 
-  body.popup-page .hero-chip {
+  body.options-page .hero-chip {
     max-width: none;
     text-align: left;
   }
