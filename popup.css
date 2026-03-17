@@ -137,7 +137,7 @@ body {
 
 body.popup-page {
   min-width: 360px;
-  background: #0f1218;
+  background: #11161e;
 }
 
 body.popup-page .popup-shell {
@@ -145,9 +145,7 @@ body.popup-page .popup-shell {
   margin: 12px;
   border: 1px solid #252d3b;
   border-radius: 20px;
-  background:
-    radial-gradient(circle at top right, rgba(208, 154, 97, 0.12), transparent 34%),
-    linear-gradient(180deg, #171d27 0%, #131922 100%);
+  background: #151b24;
   overflow: hidden;
 }
 
@@ -186,7 +184,7 @@ body.popup-page .status-message {
 
 .popup-header {
   padding-top: 18px;
-  padding-bottom: 18px;
+  padding-bottom: 16px;
   border-bottom: 1px solid #252d3b;
 }
 
@@ -237,7 +235,7 @@ body.popup-page .popup-header h1 {
 
 body.popup-page .popup-header .lede {
   max-width: 29ch;
-  margin-top: 8px;
+  margin-top: 6px;
   font-size: 13px;
   line-height: 1.5;
   color: #96a1b3;
@@ -275,8 +273,8 @@ body.popup-page .hero-chip {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 14px;
-  padding-bottom: 10px;
+  margin-bottom: 0;
+  padding-bottom: 0;
   border-bottom: 1px solid var(--line);
 }
 
@@ -287,7 +285,9 @@ body.popup-page .hero-chip {
 }
 
 .popup-heading {
-  margin-bottom: 14px;
+  display: grid;
+  gap: 4px;
+  margin-bottom: 12px;
   padding-bottom: 0;
   border-bottom: 0;
 }
@@ -301,7 +301,7 @@ body.popup-page .hero-chip {
 }
 
 .popup-heading p {
-  margin-top: 4px;
+  margin: 0;
   font-size: 12px;
   line-height: 1.4;
   color: #8d98aa;
