@@ -1,5 +1,9 @@
 # ScrollBrake
 
+<p align="center">
+  <img src="icons/scrollbrake-128.png" alt="ScrollBrake extension icon" width="128" height="128">
+</p>
+
 ScrollBrake is a privacy-first browser extension that limits active time on social media sites. Each enabled site gets its own usage budget. When the budget runs out, ScrollBrake locks the site with a full-page countdown takeover for the configured break period.
 
 It is built as a plain JavaScript Manifest V3 WebExtension with separate Chrome and Firefox outputs generated from the same source files.
