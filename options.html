@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Social Lock Settings</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <main class="app-shell" style="max-width: 720px; margin: 24px auto;">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">Settings</p>
+          <h1>Social Lock configuration</h1>
+          <p class="lede">This full-page view uses the same controls as the popup, with all data stored locally on this device.</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Configure extension</h2>
+            <p>Enable the sites you want to limit and tune the timing below.</p>
+          </div>
+        </div>
+        <form id="settings-form" class="settings-grid">
+          <label class="field">
+            <span>Usage limit</span>
+            <div class="input-with-suffix">
+              <input id="max-usage-minutes" name="maxUsageMinutes" type="number" min="1" step="1" required />
+              <span>min</span>
+            </div>
+          </label>
+          <label class="field">
+            <span>Lockout time</span>
+            <div class="input-with-suffix">
+              <input id="block-duration-minutes" name="blockDurationMinutes" type="number" min="1" step="1" required />
+              <span>min</span>
+            </div>
+          </label>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="panel-heading">
+          <div>
+            <h2>Sites</h2>
+            <p>Built-ins cover Facebook, Instagram, X, YouTube, and any extra domains you add.</p>
+          </div>
+        </div>
+        <div id="site-list" class="site-list"></div>
+        <form id="custom-site-form" class="custom-site-form">
+          <label class="field field-grow">
+            <span>Add domain</span>
+            <input id="custom-site-domain" type="text" placeholder="news.ycombinator.com" autocomplete="off" />
+          </label>
+          <button class="secondary-button" type="submit">Add</button>
+        </form>
+      </section>
+
+      <section class="privacy-note">
+        <h2>Privacy</h2>
+        <p>No browsing history is uploaded anywhere. Settings and timers live in local extension storage only.</p>
+      </section>
+
+      <footer class="app-footer">
+        <button id="save-button" class="primary-button" type="button">Save changes</button>
+      </footer>
+      <p id="status-message" class="status-message" aria-live="polite"></p>
+      <div id="active-site-chip" class="hero-chip">No tracked site open</div>
+    </main>
+    <script src="popup.js" type="module"></script>
+  </body>
+</html>
