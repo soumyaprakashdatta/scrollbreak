@@ -6,6 +6,7 @@ const DEFAULTS = {
 };
 
 const elements = {
+  root: document.querySelector(".popup-shell"),
   form: document.querySelector("#settings-form"),
   maxUsageMinutes: document.querySelector("#max-usage-minutes"),
   blockDurationMinutes: document.querySelector("#block-duration-minutes"),
@@ -19,6 +20,13 @@ const elements = {
 };
 
 let dashboardData = null;
+
+function resetPopupScroll() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  elements.root?.scrollTo?.(0, 0);
+}
 
 function normalizePattern(input) {
   return String(input || "")
@@ -118,6 +126,7 @@ function renderSiteList() {
 }
 
 async function loadDashboard() {
+  resetPopupScroll();
   const url = await activeUrl();
   dashboardData = await extensionApi.runtime.sendMessage({ type: "get-dashboard-data", activeUrl: url });
   elements.maxUsageMinutes.value = dashboardData.settings.maxUsageMinutes || DEFAULTS.maxUsageMinutes;
@@ -125,6 +134,7 @@ async function loadDashboard() {
   const activeSite = dashboardData.sites.find((site) => site.id === dashboardData.activeSiteId);
   elements.activeSiteChip.textContent = activeSite ? `Active: ${activeSite.label}` : "No tracked site open";
   renderSiteList();
+  resetPopupScroll();
 }
 
 function collectSettings() {
@@ -189,3 +199,5 @@ if (elements.openOptionsButton) {
 loadDashboard().catch((error) => {
   showStatus(error.message || "Failed to load ScrollBrake.", "error");
 });
+
+window.addEventListener("load", resetPopupScroll);
