@@ -7,6 +7,14 @@ let overlayRoot = null;
 let overlayIntervalId = null;
 let heartbeatIntervalId = null;
 let lastHeartbeatAt = Date.now();
+let lockMediaState = createLockMediaState();
+
+function createLockMediaState() {
+  return {
+    isActive: false,
+    mutedElements: new Map()
+  };
+}
 
 function formatDuration(ms) {
   const totalSeconds = Math.max(0, Math.ceil(ms / 1000));
@@ -17,6 +25,64 @@ function formatDuration(ms) {
 
 function getPageUrl() {
   return window.location.href;
+}
+
+function isYouTubePage() {
+  const hostname = window.location.hostname.toLowerCase().replace(/^www\./, "");
+  return hostname === "youtube.com" || hostname.endsWith(".youtube.com") || hostname === "youtu.be";
+}
+
+function getMediaElements() {
+  return Array.from(document.querySelectorAll("audio, video"));
+}
+
+function pauseYouTubePlayback() {
+  if (!isYouTubePage()) {
+    return;
+  }
+
+  for (const mediaElement of getMediaElements()) {
+    if (mediaElement instanceof HTMLMediaElement && !mediaElement.paused) {
+      mediaElement.pause();
+    }
+  }
+}
+
+function mutePageMedia() {
+  for (const mediaElement of getMediaElements()) {
+    if (!(mediaElement instanceof HTMLMediaElement)) {
+      continue;
+    }
+
+    if (!lockMediaState.mutedElements.has(mediaElement)) {
+      lockMediaState.mutedElements.set(mediaElement, mediaElement.muted);
+    }
+
+    mediaElement.muted = true;
+  }
+}
+
+function applyLockMediaState() {
+  if (!lockMediaState.isActive) {
+    lockMediaState.isActive = true;
+    pauseYouTubePlayback();
+  }
+
+  mutePageMedia();
+}
+
+function restoreLockMediaState() {
+  for (const [mediaElement, wasMuted] of lockMediaState.mutedElements.entries()) {
+    if (!mediaElement.isConnected) {
+      continue;
+    }
+
+    if (!wasMuted) {
+      mediaElement.muted = false;
+    }
+  }
+
+  lockMediaState = createLockMediaState();
 }
 
 function ensureOverlay() {
@@ -222,6 +288,7 @@ function showOverlay(snapshot) {
   const countdown = root.querySelector("#social-lock-countdown");
   const meter = root.querySelector("#social-lock-meter");
 
+  applyLockMediaState();
   root.style.display = "flex";
   title.textContent = `${snapshot.site.label} is locked`;
   message.textContent = "Your usage limit has been reached. Take a short break while the timer counts down.";
@@ -252,6 +319,7 @@ function showOverlay(snapshot) {
 }
 
 function hideOverlay() {
+  restoreLockMediaState();
   if (overlayRoot) {
     overlayRoot.style.display = "none";
   }
