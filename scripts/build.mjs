@@ -63,7 +63,10 @@ const browserOverrides = {
     },
     browser_specific_settings: {
       gecko: {
-        id: "scrollbrake@local.dev"
+        id: "scrollbrake@local.dev",
+        data_collection_permissions: {
+          required: ["none"]
+        }
       }
     }
   }
