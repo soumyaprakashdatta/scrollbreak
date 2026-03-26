@@ -26,7 +26,11 @@ function createDefaultSettings() {
 function createDefaultState() {
   return {
     usageBySite: {},
-    blocksBySite: {}
+    blocksBySite: {},
+    pause: {
+      isPaused: false,
+      startedAt: 0
+    }
   };
 }
 
@@ -88,12 +92,31 @@ function sanitizeSettings(settings) {
   };
 }
 
+function sanitizeState(state) {
+  const fallback = createDefaultState();
+  const usageBySite = state && typeof state.usageBySite === "object" ? state.usageBySite : fallback.usageBySite;
+  const blocksBySite = state && typeof state.blocksBySite === "object" ? state.blocksBySite : fallback.blocksBySite;
+  const pauseState = state && typeof state.pause === "object" ? state.pause : fallback.pause;
+
+  return {
+    usageBySite,
+    blocksBySite,
+    pause: {
+      isPaused: Boolean(pauseState.isPaused),
+      startedAt: Math.max(0, Number(pauseState.startedAt || 0))
+    }
+  };
+}
+
 async function ensureData() {
   const stored = await getStoredData([STORAGE_KEYS.settings, STORAGE_KEYS.state]);
   const settings = sanitizeSettings(stored[STORAGE_KEYS.settings] || createDefaultSettings());
-  const state = stored[STORAGE_KEYS.state] || createDefaultState();
+  const state = sanitizeState(stored[STORAGE_KEYS.state] || createDefaultState());
+  const shouldPersistSettings = !stored[STORAGE_KEYS.settings];
+  const shouldPersistState = !stored[STORAGE_KEYS.state]
+    || Boolean(stored[STORAGE_KEYS.state]?.pause === undefined);
 
-  if (!stored[STORAGE_KEYS.settings] || !stored[STORAGE_KEYS.state]) {
+  if (shouldPersistSettings || shouldPersistState) {
     await setStoredData({
       [STORAGE_KEYS.settings]: settings,
       [STORAGE_KEYS.state]: state
@@ -146,12 +169,75 @@ async function getSettingsAndState() {
   const stored = await getStoredData([STORAGE_KEYS.settings, STORAGE_KEYS.state]);
   return {
     settings: sanitizeSettings(stored[STORAGE_KEYS.settings] || createDefaultSettings()),
-    state: stored[STORAGE_KEYS.state] || createDefaultState()
+    state: sanitizeState(stored[STORAGE_KEYS.state] || createDefaultState())
   };
 }
 
 async function saveState(state) {
   await setStoredData({ [STORAGE_KEYS.state]: state });
+}
+
+function withExpiredBlocksCleared(state, now) {
+  const cleanState = structuredClone(state);
+  let changed = false;
+
+  for (const [siteId, entry] of Object.entries(cleanState.blocksBySite || {})) {
+    const blockedUntil = Math.max(0, Number(entry?.blockedUntil || 0));
+    if (blockedUntil && blockedUntil <= now) {
+      delete cleanState.blocksBySite[siteId];
+      changed = true;
+    }
+  }
+
+  return { state: cleanState, changed };
+}
+
+function getPausedSiteSnapshot(settings, state, siteId) {
+  const snapshot = getSiteSnapshot(settings, state, siteId, Math.max(0, Number(state.pause.startedAt || Date.now())));
+  return {
+    ...snapshot,
+    isBlocked: false
+  };
+}
+
+async function handleTogglePause(forcePaused) {
+  const now = Date.now();
+  const { state } = await getSettingsAndState();
+  const nextState = structuredClone(state);
+  const shouldPause = typeof forcePaused === "boolean"
+    ? forcePaused
+    : !nextState.pause.isPaused;
+
+  if (shouldPause === nextState.pause.isPaused) {
+    return { ok: true, paused: nextState.pause.isPaused };
+  }
+
+  if (shouldPause) {
+    nextState.pause = {
+      isPaused: true,
+      startedAt: now
+    };
+  } else {
+    const pauseDurationMs = Math.max(0, now - Number(nextState.pause.startedAt || 0));
+    for (const entry of Object.values(nextState.blocksBySite || {})) {
+      const blockedUntil = Math.max(0, Number(entry?.blockedUntil || 0));
+      if (blockedUntil > Number(nextState.pause.startedAt || 0)) {
+        entry.blockedUntil = blockedUntil + pauseDurationMs;
+      }
+    }
+
+    nextState.pause = {
+      isPaused: false,
+      startedAt: 0
+    };
+  }
+
+  await saveState(nextState);
+
+  return {
+    ok: true,
+    paused: nextState.pause.isPaused
+  };
 }
 
 async function handleHeartbeat({ url, elapsedMs = 1000 }) {
@@ -160,15 +246,19 @@ async function handleHeartbeat({ url, elapsedMs = 1000 }) {
   const site = findTrackedSite(settings, url);
 
   if (!site) {
-    return { tracked: false };
+    return { tracked: false, paused: state.pause.isPaused };
   }
 
-  const cleanState = structuredClone(state);
-  const currentBlock = Number(cleanState.blocksBySite?.[site.id]?.blockedUntil || 0);
-
-  if (currentBlock && currentBlock <= now) {
-    delete cleanState.blocksBySite[site.id];
+  if (state.pause.isPaused) {
+    return {
+      tracked: true,
+      paused: true,
+      site,
+      ...getPausedSiteSnapshot(settings, state, site.id)
+    };
   }
+
+  const { state: cleanState } = withExpiredBlocksCleared(state, now);
 
   const snapshotBefore = getSiteSnapshot(settings, cleanState, site.id, now);
 
@@ -198,6 +288,7 @@ async function handleHeartbeat({ url, elapsedMs = 1000 }) {
 
   return {
     tracked: true,
+    paused: false,
     site,
     ...snapshotAfter
   };
@@ -209,17 +300,19 @@ async function handleGetSiteState(url) {
   const site = findTrackedSite(settings, url);
 
   if (!site) {
-    return { tracked: false };
+    return { tracked: false, paused: state.pause.isPaused };
   }
 
-  const cleanState = structuredClone(state);
-  const currentBlock = Number(cleanState.blocksBySite?.[site.id]?.blockedUntil || 0);
-  let changed = false;
-
-  if (currentBlock && currentBlock <= now) {
-    delete cleanState.blocksBySite[site.id];
-    changed = true;
+  if (state.pause.isPaused) {
+    return {
+      tracked: true,
+      paused: true,
+      site,
+      ...getPausedSiteSnapshot(settings, state, site.id)
+    };
   }
+
+  const { state: cleanState, changed } = withExpiredBlocksCleared(state, now);
 
   if (changed) {
     await saveState(cleanState);
@@ -227,6 +320,7 @@ async function handleGetSiteState(url) {
 
   return {
     tracked: true,
+    paused: false,
     site,
     ...getSiteSnapshot(settings, cleanState, site.id, now)
   };
@@ -235,8 +329,11 @@ async function handleGetSiteState(url) {
 async function handleGetDashboardData(activeUrl) {
   const now = Date.now();
   const { settings, state } = await getSettingsAndState();
+  const activeState = state.pause.isPaused ? state : withExpiredBlocksCleared(state, now).state;
   const sites = settings.sites.map((site) => {
-    const snapshot = getSiteSnapshot(settings, state, site.id, now);
+    const snapshot = state.pause.isPaused
+      ? getPausedSiteSnapshot(settings, state, site.id)
+      : getSiteSnapshot(settings, activeState, site.id, now);
     return {
       ...site,
       ...snapshot
@@ -246,7 +343,10 @@ async function handleGetDashboardData(activeUrl) {
   return {
     settings,
     sites,
-    activeSiteId: findTrackedSite(settings, activeUrl)?.id || null
+    activeSiteId: findTrackedSite(settings, activeUrl)?.id || null,
+    pause: {
+      isPaused: state.pause.isPaused
+    }
   };
 }
 
@@ -268,9 +368,13 @@ extensionApi.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
     if (message?.type === "save-settings") {
       const nextSettings = sanitizeSettings(message.settings);
+      const { state } = await getSettingsAndState();
       await setStoredData({
         [STORAGE_KEYS.settings]: nextSettings,
-        [STORAGE_KEYS.state]: createDefaultState()
+        [STORAGE_KEYS.state]: {
+          ...createDefaultState(),
+          pause: state.pause
+        }
       });
       sendResponse({ ok: true, settings: nextSettings });
       return;
@@ -288,6 +392,11 @@ extensionApi.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
     if (message?.type === "get-dashboard-data") {
       sendResponse(await handleGetDashboardData(message.activeUrl));
+      return;
+    }
+
+    if (message?.type === "toggle-pause") {
+      sendResponse(await handleTogglePause(message.paused));
       return;
     }
 

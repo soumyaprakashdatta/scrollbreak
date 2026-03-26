@@ -16,7 +16,8 @@ const elements = {
   statusMessage: document.querySelector("#status-message"),
   saveButton: document.querySelector("#save-button"),
   openOptionsButton: document.querySelector("#open-options-button"),
-  activeSiteChip: document.querySelector("#active-site-chip")
+  activeSiteChip: document.querySelector("#active-site-chip"),
+  pauseToggleButton: document.querySelector("#pause-toggle-button")
 };
 
 let dashboardData = null;
@@ -67,6 +68,31 @@ function showStatus(message, kind = "") {
   elements.statusMessage.className = `status-message ${kind}`.trim();
 }
 
+function isPaused() {
+  return Boolean(dashboardData?.pause?.isPaused);
+}
+
+function renderPauseState() {
+  const paused = isPaused();
+
+  if (elements.pauseToggleButton) {
+    elements.pauseToggleButton.textContent = paused ? "Resume extension" : "Pause extension";
+    elements.pauseToggleButton.classList.toggle("is-paused", paused);
+  }
+
+  if (elements.activeSiteChip) {
+    if (paused) {
+      elements.activeSiteChip.textContent = "Extension paused";
+      elements.activeSiteChip.classList.add("is-paused");
+      return;
+    }
+
+    const activeSite = dashboardData?.sites?.find((site) => site.id === dashboardData.activeSiteId);
+    elements.activeSiteChip.textContent = activeSite ? `Active: ${activeSite.label}` : "No tracked site open";
+    elements.activeSiteChip.classList.remove("is-paused");
+  }
+}
+
 function activeUrl() {
   return extensionApi.tabs
     .query({ active: true, currentWindow: true })
@@ -83,9 +109,13 @@ function renderSiteList() {
     const stats = statsById.get(site.id);
     const usageRatio = stats?.maxUsageMs ? Math.min((stats.usageMs / stats.maxUsageMs) * 100, 100) : 0;
     const isBlocked = Boolean(stats?.isBlocked);
-    const stateLabel = stats?.isBlocked
+    const stateLabel = isPaused()
+      ? "Tracking paused"
+      : stats?.isBlocked
       ? formatDuration(stats.remainingBlockMs)
       : `${Math.max(0, Math.ceil((stats?.remainingUsageMs || 0) / 60000))} min available`;
+    const stateClass = isPaused() ? "is-paused" : isBlocked ? "is-blocked" : "is-ready";
+    const stateText = isPaused() ? "Paused" : isBlocked ? "Locked" : "Ready";
 
     const card = document.createElement("article");
     card.className = "site-card";
@@ -96,7 +126,7 @@ function renderSiteList() {
         <p>${site.patterns.join(", ")}</p>
       </div>
       <div class="site-actions">
-        <span class="site-state-pill ${isBlocked ? "is-blocked" : "is-ready"}">${isBlocked ? "Locked" : "Ready"}</span>
+        <span class="site-state-pill ${stateClass}">${stateText}</span>
         <div class="site-metric">
           <span>${stateLabel}</span>
           <div class="site-meter"><span style="width:${usageRatio}%;"></span></div>
@@ -131,8 +161,7 @@ async function loadDashboard() {
   dashboardData = await extensionApi.runtime.sendMessage({ type: "get-dashboard-data", activeUrl: url });
   elements.maxUsageMinutes.value = dashboardData.settings.maxUsageMinutes || DEFAULTS.maxUsageMinutes;
   elements.blockDurationMinutes.value = dashboardData.settings.blockDurationMinutes || DEFAULTS.blockDurationMinutes;
-  const activeSite = dashboardData.sites.find((site) => site.id === dashboardData.activeSiteId);
-  elements.activeSiteChip.textContent = activeSite ? `Active: ${activeSite.label}` : "No tracked site open";
+  renderPauseState();
   renderSiteList();
   resetPopupScroll();
 }
@@ -157,6 +186,13 @@ async function saveSettings() {
 
   await extensionApi.runtime.sendMessage({ type: "save-settings", settings });
   showStatus("Saved locally on this device.", "success");
+  await loadDashboard();
+}
+
+async function togglePause() {
+  const nextPaused = !isPaused();
+  await extensionApi.runtime.sendMessage({ type: "toggle-pause", paused: nextPaused });
+  showStatus(nextPaused ? "ScrollBrake is paused until you resume it." : "ScrollBrake is tracking again.", "success");
   await loadDashboard();
 }
 
@@ -193,6 +229,14 @@ if (elements.saveButton) {
 if (elements.openOptionsButton) {
   elements.openOptionsButton.addEventListener("click", () => {
     extensionApi.runtime.openOptionsPage();
+  });
+}
+
+if (elements.pauseToggleButton) {
+  elements.pauseToggleButton.addEventListener("click", () => {
+    togglePause().catch((error) => {
+      showStatus(error.message || "Failed to update pause state.", "error");
+    });
   });
 }
 
