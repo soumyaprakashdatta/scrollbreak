@@ -196,6 +196,13 @@ body.popup-page .status-message {
   margin-bottom: 8px;
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
 body.popup-page .eyebrow {
   margin-bottom: 0;
   font-size: 15px;
@@ -259,6 +266,11 @@ body.popup-page .popup-header .lede {
   font-weight: 600;
 }
 
+.hero-chip.is-paused {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
 body.popup-page .hero-chip {
   max-width: 146px;
   padding: 5px 8px;
@@ -267,6 +279,12 @@ body.popup-page .hero-chip {
   border: 1px solid #313b4d;
   background: #1a2130;
   color: #d2dae6;
+}
+
+body.popup-page .hero-chip.is-paused {
+  border-color: #65452f;
+  background: #2b221d;
+  color: #ffc49b;
 }
 
 .panel-heading {
@@ -309,6 +327,25 @@ body.popup-page .hero-chip {
   font-size: 10px;
   line-height: 1.35;
   color: #8d98aa;
+}
+
+.pause-toggle-button {
+  border-radius: 999px;
+}
+
+body.popup-page .pause-toggle-button {
+  width: 100%;
+  min-height: 34px;
+  margin-top: 10px;
+  border-color: #3a4558;
+  background: #1a2130;
+  color: #e5ebf5;
+}
+
+body.popup-page .pause-toggle-button.is-paused {
+  border-color: #7e4d31;
+  background: #36271f;
+  color: #ffd2b3;
 }
 
 .settings-grid {
@@ -540,6 +577,13 @@ body.popup-page .site-actions {
   border: 1px solid #313b4d;
   background: #182031;
   color: #d2dae6;
+}
+
+body.popup-page .site-state-pill.is-paused,
+.site-state-pill.is-paused {
+  border-color: #ddb999;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
 }
 
 .site-state-pill.is-blocked {

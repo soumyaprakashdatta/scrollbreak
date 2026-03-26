@@ -24,6 +24,13 @@ body.options-page .hero {
   gap: 16px;
 }
 
+body.options-page .hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
 body.options-page .eyebrow {
   margin-bottom: 6px;
   color: #dd6231;
@@ -50,6 +57,11 @@ body.options-page .hero-chip {
   background: #d7e2ff;
   color: #2f6dff;
   font-weight: 700;
+}
+
+body.options-page .hero-chip.is-paused {
+  background: #fde7db;
+  color: #b6552d;
 }
 
 body.options-page .panel-heading {
@@ -121,6 +133,12 @@ body.options-page .site-state-pill {
   color: #202638;
 }
 
+body.options-page .site-state-pill.is-paused {
+  border-color: #ddb999;
+  background: #fde7db;
+  color: #b6552d;
+}
+
 body.options-page .site-meter {
   background: #d7ddea;
 }
@@ -152,6 +170,17 @@ body.options-page .primary-button,
 body.options-page .secondary-button,
 body.options-page .text-button {
   border-radius: 18px;
+}
+
+body.options-page .pause-toggle-button {
+  padding: 12px 18px;
+  border-radius: 999px;
+}
+
+body.options-page .pause-toggle-button.is-paused {
+  border-color: #dbb093;
+  background: #fff0e6;
+  color: #b6552d;
 }
 
 body.options-page .primary-button {
